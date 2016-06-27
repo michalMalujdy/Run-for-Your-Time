@@ -4,7 +4,7 @@ using System.Collections;
 public class Shoot : MonoBehaviour {
 
 	public Vector2 velocity;
-	private float speed = 5000.0f;
+	private float speed = 0.55f;
 	private float alpha;
     private Vector2 startPoint;
     private Vector2 previousPosition;

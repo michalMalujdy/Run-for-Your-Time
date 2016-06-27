@@ -29,7 +29,7 @@ public class OnDrag : MonoBehaviour {
 	void Update () {
 		//Jest sprawdzany tylko jeden dotyk dla strzelania, wiec warunek czy juz jakis jest sledzony
 		if (!hasBeenTracked) {
-			//przejscie po petli wszystkich dotykow i srawczenie czy ktorys sie zaczal i jest w porzadanym obszarze
+			//przejscie po petli wszystkich dotykow i sprawdzenie czy ktorys sie zaczal i jest w porzadanym obszarze
 			foreach (Touch touch in Input.touches) {
 				if(touch.position.x >= leftBorder && touch.position.y >= downBorder){
 					if (touch.phase == TouchPhase.Began) {
@@ -42,7 +42,7 @@ public class OnDrag : MonoBehaviour {
 			}
 		}
 		else {
-			//Wykonyje sie gdy dotyk jest sledzony
+			//Wykonuje sie gdy dotyk jest sledzony
 			FindByFingerID(ID);
 			Touch touch = findedEndedTouch;
 			currentPosition = touch.position;
