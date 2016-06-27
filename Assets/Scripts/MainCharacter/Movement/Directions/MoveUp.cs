@@ -16,6 +16,6 @@ public class MoveUp : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		mainCharacter.IsRunningUp = GetComponent<Buttons>().isButtonDown(buttonLeft,buttonRight,buttonDown,buttonUp);
-	}
+		mainCharacter.IsRunningUp = GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.W);
+    }
 }

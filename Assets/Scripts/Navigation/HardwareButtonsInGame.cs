@@ -16,7 +16,7 @@ public class HardwareButtonsInGame : MonoBehaviour {
 	void LateUpdate () {
 		#if UNITY_EDITOR
 
-		if (Input.GetKeyDown(KeyCode.Space) && !buttonPressed) {
+		if (Input.GetKeyDown(KeyCode.P) && !buttonPressed) {
 
 			if(!pauseCanvasOn){
 				pauseCanvas.gameObject.SetActive(true);

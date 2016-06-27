@@ -15,8 +15,8 @@ public class MoveForward : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		mainCharacter.IsRunningForeward = GetComponent<Buttons>().isButtonDown(buttonLeft,buttonRight,buttonDown,buttonUp);
-	}
+		mainCharacter.IsRunningForeward = GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.D);
+    }
 
 	public float ButtonLeft {
 		get {

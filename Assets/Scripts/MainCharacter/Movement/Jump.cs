@@ -23,7 +23,7 @@ public class Jump : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (!mainCharacterChainConnection.IsCharacterAttachedToChain) {
-			if (GetComponent<Buttons> ().isButtonDown (buttonLeft, buttonRight, buttonDown, buttonUp) && !isJumping) {
+			if (GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.Space) && !isJumping) {
 				mainCharacterRB.velocity = new Vector2 (mainCharacterRB.velocity.x, mainCharacterRB.velocity.y + jumpVelocity);
 				isJumping = true;
 				groundColliderComponent.IsGrounded = false;
@@ -33,7 +33,6 @@ public class Jump : MonoBehaviour {
 			isJumping = false;
 		}
 	}
-
 
 	public bool IsJumping {
 		get {

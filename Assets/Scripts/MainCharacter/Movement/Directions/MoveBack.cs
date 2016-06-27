@@ -15,6 +15,6 @@ public class MoveBack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		mainCharacter.IsRunningBack = GetComponent<Buttons>().isButtonDown(buttonLeft, buttonRight,buttonDown,buttonUp);
-	}
+		mainCharacter.IsRunningBack = GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.A);
+    }
 }
