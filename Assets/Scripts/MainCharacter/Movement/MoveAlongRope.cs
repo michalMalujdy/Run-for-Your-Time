@@ -34,7 +34,7 @@ public class MoveAlongRope : MonoBehaviour {
 
 	void goUp()
 	{
-		if (listOfChainCells.Count >= chainCellIterator) {
+		if (listOfChainCells.Count > chainCellIterator) {
 			movedDistnace += speed;
 			GetComponent<HingeJoint2D> ().connectedAnchor = new Vector2 (mainCharacterJoint.connectedAnchor.x, mainCharacterJoint.connectedAnchor.y + speed);
 			if (movedDistnace >= chainCellHeight) {

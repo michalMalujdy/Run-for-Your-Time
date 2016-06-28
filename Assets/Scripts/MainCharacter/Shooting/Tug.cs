@@ -6,7 +6,7 @@ public class Tug : MonoBehaviour {
 	private CharacterCollision collisionComponent;
 	private bool isTuggingEnable = false;
 	private Rigidbody2D rb;
-	private float armRadious = 1.0f;
+	private float armRadious = 1.5f;
 	private EnemyKilling enemyKillComponent;
 	private ChainConnection chainConnectionComponent;
 

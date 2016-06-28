@@ -27,8 +27,10 @@ public class RealTimeRopeCreating : MonoBehaviour {
 	public Transform wholeChainPrefab;
 	private Transform newWholeChain;
 	private List <Transform> listOfChainCells = new List <Transform>();
-	
-	void Start()
+    private GameObject arrowWithChain;
+
+
+    void Start()
 	{
 		anchorBetweenCells = GeneralVariables.anchorBetweenCells;
 		chainCellHeightWithAnchor = GeneralVariables.chainCellHeight_without_anchor + anchorBetweenCells;
@@ -60,6 +62,12 @@ public class RealTimeRopeCreating : MonoBehaviour {
 		if (!firstChainCellCreated) {
 			newCell.GetComponent<HingeJoint2D> ().connectedBody = GetComponent<Rigidbody2D> ();	
 			newWholeChain = Instantiate (wholeChainPrefab);
+
+            arrowWithChain = new GameObject();
+            arrowWithChain.name = "ArrowWithChain";
+            GetComponent<Transform>().parent = arrowWithChain.GetComponent<Transform>();
+            newWholeChain.parent = arrowWithChain.GetComponent<Transform>();
+
             newCell.GetComponent<HingeJoint2D> ().connectedAnchor = new Vector2 (0.0f, 0.0f);
 		    newCell.GetComponent<HingeJoint2D> ().anchor = new Vector2 (0.0f, 0.4f);
 		} else {
@@ -88,6 +96,8 @@ public class RealTimeRopeCreating : MonoBehaviour {
 			Physics2D.IgnoreCollision (mainCharacter.GetComponent<Collider2D> (), listOfChainCells [i].GetComponent<Collider2D> ());
 		}
 		mainCharacter.GetComponent<MoveAlongRope> ().ListOfChainCells = listOfChainCells;
+        mainCharacter.GetComponent<MoveAlongRope>().resetMovedDistance();
+        GameObject.Find("CameraHolder").GetComponent<CountingArrows>().AddNewArrow(arrowWithChain);
 	}
 
 	public bool StartMakingChain {

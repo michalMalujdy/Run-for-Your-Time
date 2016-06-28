@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CountingArrows : MonoBehaviour {
-
-	public bool isArrowShoot;
-	public GameObject ArrowShoot;
-	public GameObject ChainAttached;
+    
+    public List<GameObject> arrowsList = new List<GameObject>();
+    private int maxArrowNumber = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -16,4 +16,15 @@ public class CountingArrows : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    public void AddNewArrow(GameObject item)
+    {
+        arrowsList.Add(item);
+        if(arrowsList.Count > maxArrowNumber)
+        {
+            Destroy(arrowsList[0]);
+            arrowsList.RemoveAt(0);
+        }
+        Debug.Log("Arrows Number=" + arrowsList.Count);
+    }
 }
