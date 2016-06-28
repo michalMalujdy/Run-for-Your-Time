@@ -32,7 +32,7 @@ public class SwingShoot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GetComponent<Buttons>().isButtonDown (buttonLeft, buttonRight, buttonDown, buttonUp)) {
+		if (GetComponent<Buttons>().IsButtonOrKeyboardDown (buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.LeftShift)) {
 			clicked = true;
 		}
 		else {

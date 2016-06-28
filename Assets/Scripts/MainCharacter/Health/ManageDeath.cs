@@ -8,6 +8,8 @@ public class ManageDeath : MonoBehaviour {
     private HandleAnimations characterAnimations;
     private Transform transformComponent;
 
+    public GameObject ButtonCanvas;
+
     public float LowestYPoint;
     
     // Use this for initialization
@@ -33,5 +35,7 @@ public class ManageDeath : MonoBehaviour {
     {
         characterAnimations.DeadAnimation();
         DeathCanvas.gameObject.SetActive(true);
+        GetComponent<Run>().StopRunning();
+        ButtonCanvas.SetActive(false);
     }
 }

@@ -17,7 +17,7 @@ public class ChainConnection : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (isCharacterAttachedToChain) {
-			if (ScreenInputZone.CheckForDoubleTap ()) {
+			if (ScreenInputZone.CheckForDoubleTap () || Input.GetKeyDown(KeyCode.LeftControl)) {
 				Dismount ();
 			}
 		}

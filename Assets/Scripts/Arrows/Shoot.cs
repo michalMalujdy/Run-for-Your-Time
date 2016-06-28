@@ -32,11 +32,7 @@ public class Shoot : MonoBehaviour {
 	void Start () {
 		StartPoint = transform.localPosition;
         GetComponent<Rigidbody2D>().velocity = new Vector2(velocity.x * speed, velocity.y * speed);
-        //GetComponent<Rigidbody2D>().AddForce(new Vector2(velocity.x * speed, velocity.y * speed));
-        //GetComponent<Rigidbody2D>().mass = 10;
-
-        Debug.Log("Speed="+ GetComponent<Rigidbody2D>().velocity);
-        Debug.Log("Velocity vector="+velocity);
+        
         if (mainCharacter.ShootMode) {
 			arrowType = "Shoot";
 		} else if (mainCharacter.SwingMode) {
@@ -46,8 +42,6 @@ public class Shoot : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//transform.rotation = Quaternion.Euler (0.0f, 0.0f, alpha);
-        //DeltaPosition();
 	}
 
     public Vector2 StartPoint

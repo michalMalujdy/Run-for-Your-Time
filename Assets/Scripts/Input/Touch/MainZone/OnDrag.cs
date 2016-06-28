@@ -50,25 +50,33 @@ public class OnDrag : MonoBehaviour {
 			//Jesli palec zostal puszczony i pokonana droga jest wieksza od minimum
 			if(touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled){
 				if(distance.magnitude >= dragMin){
-					//Zapisuje WEKTOR predkosci i go skracam
-					arrowVelocity = Vectors.ShortenVector(distance,dragMin);
-					//ustawiam poczatek wystrzalu. mainCharacterCircle to odleglosc od bohatera z jakiej ma byc wypuszczona strzala
-					Vector2 arrowStart = Vectors.ShortenVector(distance,MainCharacterCircle);
-					//Obliczam pod jakim katem alpha ma byc wypuszczona do strzalu
-					alpha = Mathf.Asin(distance.y / distance.magnitude) * 180 / Mathf.PI;
-					//Kat alpha sie jebie gdy strzela sie w strone II i III ćwiartki bo skladowa x jest ujemna wiec naprawiam to 
-					if(distance.x < 0){
-						alpha = 180.0f - alpha;
+                    PrepareArrowToShoot(distance);
 					}
-					//Tworzymy nową strzałę w pozycji bohatera o mainCharacterCircle odleglą od niego i pod kątem alpha
-					Instantiate(arrowPrefab,new Vector2(mainCharacter.transform.localPosition.x+arrowStart.x,mainCharacter.transform.localPosition.y+arrowStart.y),Quaternion.Euler(0.0f,0.0f,alpha));
-				}
 				hasBeenTracked = false;
 				endPosition = new Vector2 (0.0f,0.0f);
 			}
 		}
 	}
-	void FindByFingerID(int ID){
+
+    public void PrepareArrowToShoot(Vector2 distance)
+    {
+        //Zapisuje WEKTOR predkosci i go skracam
+        arrowVelocity = Vectors.ShortenVector(distance, dragMin);
+        //ustawiam poczatek wystrzalu. mainCharacterCircle to odleglosc od bohatera z jakiej ma byc wypuszczona strzala
+        Vector2 arrowStart = Vectors.ShortenVector(distance, MainCharacterCircle);
+        //Obliczam pod jakim katem alpha ma byc wypuszczona do strzalu
+        alpha = Mathf.Asin(distance.y / distance.magnitude) * 180 / Mathf.PI;
+        //Kat alpha sie jebie gdy strzela sie w strone II i III ćwiartki bo skladowa x jest ujemna wiec naprawiam to 
+        if (distance.x < 0)
+        {
+            alpha = 180.0f - alpha;
+        }
+        //Tworzymy nową strzałę w pozycji bohatera o mainCharacterCircle odleglą od niego i pod kątem alpha
+        Instantiate(arrowPrefab, new Vector2(mainCharacter.transform.localPosition.x + arrowStart.x, mainCharacter.transform.localPosition.y + arrowStart.y), Quaternion.Euler(0.0f, 0.0f, alpha));
+
+    }
+
+    void FindByFingerID(int ID){
 		foreach (Touch touch in Input.touches) {
 			if(touch.fingerId == ID){
 				findedEndedTouch = touch;

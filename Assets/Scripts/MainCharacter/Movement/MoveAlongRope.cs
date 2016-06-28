@@ -14,8 +14,8 @@ public class MoveAlongRope : MonoBehaviour {
 	private float chainCellHeight;
 	private int chainCellIterator = 0;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		mainCharacterJoint = GetComponent<HingeJoint2D> ();
 		distanceBetweenCells = GeneralVariables.anchorBetweenCells;
 		chainCellHeight = GeneralVariables.chainCellHeight_without_anchor + distanceBetweenCells;
@@ -34,7 +34,7 @@ public class MoveAlongRope : MonoBehaviour {
 
 	void goUp()
 	{
-		if (listOfChainCells.Count > chainCellIterator) {
+		if (listOfChainCells.Count >= chainCellIterator) {
 			movedDistnace += speed;
 			GetComponent<HingeJoint2D> ().connectedAnchor = new Vector2 (mainCharacterJoint.connectedAnchor.x, mainCharacterJoint.connectedAnchor.y + speed);
 			if (movedDistnace >= chainCellHeight) {
