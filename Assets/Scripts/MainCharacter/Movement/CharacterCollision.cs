@@ -40,12 +40,15 @@ public class CharacterCollision : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {
-		if (other.gameObject.tag == "Enemy")
-		{
-			GetComponent<Stats> ().AddSubstractCurrentHealth (-15.0f);
-			CalculateJumpOff ();
-			makeJumpOff = true;
-		}
+        
+
+            if (other.gameObject.tag == "Enemy")
+            {
+                GetComponent<Stats>().AddSubstractCurrentHealth(-15.0f);
+                CalculateJumpOff();
+                makeJumpOff = true;
+            }
+        
 	}
 
 	void JumpOff()// postac ma odskoczyc w momencie uderzenia z przeciwnikiem, tracac przy tym zdrowie

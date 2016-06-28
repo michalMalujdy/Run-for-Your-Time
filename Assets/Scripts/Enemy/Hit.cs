@@ -11,6 +11,7 @@ public class Hit : MonoBehaviour {
 	private EnemyKilling handleKilling;
 	private Shoot arrowType;
 	private Tug tugComponent;
+    private bool hitBefore = false;
 
 	void Awake(){
 		mainCharacter = GameObject.FindWithTag("Player").GetComponent<ShootingMode>();
@@ -29,7 +30,8 @@ public class Hit : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {
-		if (coll.gameObject.tag == "Enemy") {
+
+        if (coll.gameObject.tag == "Enemy") {
 			if (arrowType.ArrowType == "Shoot") {
 				handleKilling.KillEnemyOnLongDistance (coll);
 				Destroy (this.gameObject);
@@ -38,18 +40,18 @@ public class Hit : MonoBehaviour {
 				HookEnemy (coll);
 			} 
 		}
-		if (coll.gameObject.tag == "Terrain") {			
-			GetComponent<Rigidbody2D>().isKinematic = true;//sprawia że po uderzeniu ustalona rotacja i translacja strzaly sie nie zmienia
+		else if (coll.gameObject.tag == "Terrain") {			
+			
 			CollisionWithTerrain ();
 			if (mainCharacter.SwingMode) {
 				GetComponent<RealTimeRopeCreating> ().StartMakingChain = true;
 			}
-			Destroy(GetComponent<CreatingRope>());
-		}
-		isHit = true;
-	}
+        }
+        GetComponent<Rigidbody2D>().isKinematic = true;//sprawia że po uderzeniu ustalona rotacja i translacja strzaly sie nie zmienia
+        isHit = true;
+    }
 
-	void CollisionWithTerrain(){
+    void CollisionWithTerrain(){
 		GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.0f, 0.0f);
 		GetComponent<Rigidbody2D> ().angularVelocity = 0.0f;
 
@@ -60,6 +62,8 @@ public class Hit : MonoBehaviour {
 		transform.localPosition = new Vector2(transform.localPosition.x + shortenVelocity.x,transform.localPosition.y + shortenVelocity.y);
 		GetComponent<BoxCollider2D> ().enabled = false;
 	}
+
+    
 
 	void HookEnemy(Collision2D coll)
 	{
@@ -73,8 +77,15 @@ public class Hit : MonoBehaviour {
 		tugComponent.StartTugging ();
 	}
 
+    void IgnoreCollisionByTag(string tag, Collision2D coll)
+    {
+        if (coll.gameObject.tag == tag)
+        {
+            Physics2D.IgnoreCollision(coll.collider, GetComponent<Collider2D>());
+        }
+    }
 
-	public bool Stop {
+    public bool Stop {
 		get {
 			return stop;
 		}
