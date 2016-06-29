@@ -12,6 +12,7 @@ public class Hit : MonoBehaviour {
 	private Shoot arrowType;
 	private Tug tugComponent;
     private bool hitBefore = false;
+    public bool IgnoreOnCollisionEnter { get; set; }
 
 	void Awake(){
 		mainCharacter = GameObject.FindWithTag("Player").GetComponent<ShootingMode>();
@@ -19,6 +20,7 @@ public class Hit : MonoBehaviour {
 		handleKilling = GameObject.FindWithTag ("Player").GetComponent<EnemyKilling>();
 		arrowType = GetComponent<Shoot> ();
 		tugComponent = mainCharacter.GetComponent <Tug> ();
+        IgnoreOnCollisionEnter = false;
 	}
 	// Use this for initialization
 	void Start () {
@@ -31,24 +33,33 @@ public class Hit : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D coll) {
 
-        if (coll.gameObject.tag == "Enemy") {
-			if (arrowType.ArrowType == "Shoot") {
-				handleKilling.KillEnemyOnLongDistance (coll);
-				Destroy (this.gameObject);
-			} 
-			else if (arrowType.ArrowType == "Swing") {
-				HookEnemy (coll);
-			} 
-		}
-		else if (coll.gameObject.tag == "Terrain") {			
-			
-			CollisionWithTerrain ();
-			if (mainCharacter.SwingMode) {
-				GetComponent<RealTimeRopeCreating> ().StartMakingChain = true;
-			}
-            GetComponent<Rigidbody2D>().isKinematic = true;//sprawia że po uderzeniu ustalona rotacja i translacja strzaly sie nie zmienia
-        }       
-        isHit = true;
+        if (!IgnoreOnCollisionEnter)
+        {
+
+            if (coll.gameObject.tag == "Enemy")
+            {
+                if (arrowType.ArrowType == "Shoot")
+                {
+                    handleKilling.KillEnemyOnLongDistance(coll);
+                    Destroy(this.gameObject);
+                }
+                else if (arrowType.ArrowType == "Swing")
+                {
+                    HookEnemy(coll);
+                }
+            }
+            else if (coll.gameObject.tag == "Terrain")
+            {
+
+                CollisionWithTerrain();
+                if (mainCharacter.SwingMode)
+                {
+                    GetComponent<RealTimeRopeCreating>().StartMakingChain = true;
+                }
+                GetComponent<Rigidbody2D>().isKinematic = true;//sprawia że po uderzeniu ustalona rotacja i translacja strzaly sie nie zmienia
+            }
+            isHit = true;
+        }
     }
 
     void CollisionWithTerrain(){
@@ -60,7 +71,7 @@ public class Hit : MonoBehaviour {
 		
 		Vector2 shortenVelocity = Vectors.ShortenVector(velocity, stickInDistance);
 		transform.localPosition = new Vector2(transform.localPosition.x + shortenVelocity.x,transform.localPosition.y + shortenVelocity.y);
-		GetComponent<BoxCollider2D> ().enabled = false;
+        IgnoreOnCollisionEnter = true;
 	}
 
     
@@ -73,7 +84,8 @@ public class Hit : MonoBehaviour {
 		fixedJoint.connectedAnchor = new Vector2 (0.0f, 0.0f);
 
 		GetComponent<RealTimeRopeCreating> ().StartMakingChain = true;
-		GetComponent<BoxCollider2D> ().enabled = false;
+        //GetComponent<BoxCollider2D> ().enabled = false;
+        IgnoreOnCollisionEnter = true;
 		tugComponent.StartTugging ();
 	}
 
