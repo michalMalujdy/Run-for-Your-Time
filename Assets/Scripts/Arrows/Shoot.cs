@@ -35,7 +35,7 @@ public class Shoot : MonoBehaviour {
         
         if (mainCharacter.ShootMode) {
 			arrowType = "Shoot";
-            GameObject.Find("CameraHolder").GetComponent<CountingArrows>().AddNewArrow(gameObject);
+            GameObject.Find("CameraHolder").GetComponent<CountingArrows>().AddNewArrow(gameObject, "Shoot");
         } else if (mainCharacter.SwingMode) {
 			arrowType = "Swing";
 		}

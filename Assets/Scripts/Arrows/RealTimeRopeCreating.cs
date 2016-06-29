@@ -97,7 +97,7 @@ public class RealTimeRopeCreating : MonoBehaviour {
 		}
 		mainCharacter.GetComponent<MoveAlongRope> ().ListOfChainCells = listOfChainCells;
         mainCharacter.GetComponent<MoveAlongRope>().resetMovedDistance();
-        GameObject.Find("CameraHolder").GetComponent<CountingArrows>().AddNewArrow(arrowWithChain);
+        GameObject.Find("CameraHolder").GetComponent<CountingArrows>().AddNewArrow(arrowWithChain, "Swing");
 	}
 
 	public bool StartMakingChain {

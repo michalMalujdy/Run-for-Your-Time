@@ -15,7 +15,7 @@ public class Hit : MonoBehaviour {
 
 	void Awake(){
 		mainCharacter = GameObject.FindWithTag("Player").GetComponent<ShootingMode>();
-		fixedJoint = GetComponent<FixedJoint2D> ();
+		fixedJoint = GetComponents<FixedJoint2D> ()[1];
 		handleKilling = GameObject.FindWithTag ("Player").GetComponent<EnemyKilling>();
 		arrowType = GetComponent<Shoot> ();
 		tugComponent = mainCharacter.GetComponent <Tug> ();
@@ -36,7 +36,7 @@ public class Hit : MonoBehaviour {
 				handleKilling.KillEnemyOnLongDistance (coll);
 				Destroy (this.gameObject);
 			} 
-			else if (arrowType.ArrowType == "Swing" && !fixedJoint.enabled) {
+			else if (arrowType.ArrowType == "Swing") {
 				HookEnemy (coll);
 			} 
 		}
@@ -46,8 +46,8 @@ public class Hit : MonoBehaviour {
 			if (mainCharacter.SwingMode) {
 				GetComponent<RealTimeRopeCreating> ().StartMakingChain = true;
 			}
-        }
-        GetComponent<Rigidbody2D>().isKinematic = true;//sprawia że po uderzeniu ustalona rotacja i translacja strzaly sie nie zmienia
+            GetComponent<Rigidbody2D>().isKinematic = true;//sprawia że po uderzeniu ustalona rotacja i translacja strzaly sie nie zmienia
+        }       
         isHit = true;
     }
 
@@ -55,7 +55,7 @@ public class Hit : MonoBehaviour {
 		GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.0f, 0.0f);
 		GetComponent<Rigidbody2D> ().angularVelocity = 0.0f;
 
-		transform.localRotation = Quaternion.Euler(0.0f,0.0f,GetComponent<Shoot>().Alpha);
+		//transform.localRotation = Quaternion.Euler(0.0f,0.0f,GetComponent<Shoot>().Alpha);
 		Vector2 velocity = GetComponent<Shoot>().velocity;
 		
 		Vector2 shortenVelocity = Vectors.ShortenVector(velocity, stickInDistance);

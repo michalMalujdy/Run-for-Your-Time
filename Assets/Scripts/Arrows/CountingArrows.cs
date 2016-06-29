@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class CountingArrows : MonoBehaviour {
     
     public List<GameObject> arrowsList = new List<GameObject>();
+    public GameObject swingArrow;
     private int maxArrowNumber = 10;
 
 	// Use this for initialization
@@ -17,14 +18,21 @@ public class CountingArrows : MonoBehaviour {
 	
 	}
 
-    public void AddNewArrow(GameObject item)
+    public void AddNewArrow(GameObject item, string type)
     {
-        arrowsList.Add(item);
-        if(arrowsList.Count > maxArrowNumber)
+        if (type == "Shoot")
         {
-            Destroy(arrowsList[0]);
-            arrowsList.RemoveAt(0);
+            arrowsList.Add(item);
+            if (arrowsList.Count > maxArrowNumber)
+            {
+                Destroy(arrowsList[0]);
+                arrowsList.RemoveAt(0);
+            }
         }
-        Debug.Log("Arrows Number=" + arrowsList.Count);
+        else if(type == "Swing")
+        {
+            Destroy(swingArrow);
+            swingArrow = item;
+        }
     }
 }
