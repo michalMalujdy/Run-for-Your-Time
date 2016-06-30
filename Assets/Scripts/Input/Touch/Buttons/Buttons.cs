@@ -69,10 +69,10 @@ public class Buttons : MonoBehaviour {
     public bool IsButtonOrKeyboardDown(float buttonLeft, float buttonRight, float buttonDown, float buttonUp, KeyCode key)
     {
         bool result = GetComponent<Buttons>().isButtonDown(buttonLeft, buttonRight, buttonDown, buttonUp);
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         if (result != true)
             result = Input.GetKey(key);
-#endif
+//#endif
         return result;
     }
 

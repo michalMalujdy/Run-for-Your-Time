@@ -7,8 +7,11 @@ public class GroundCollider : MonoBehaviour {
 	public Rigidbody2D maincharacter;
 	private bool isGrounded;
 	private Transform transformComponent;
-	private float radious = 0.2f;
+	private float radious = 0.05f;
 	private Collider2D groundPointCollider;
+    Collider2D[] collidersInCircle;
+    private int terrainLayer;
+    private int enemyLayer;
 
 	void Awake()
 	{
@@ -24,24 +27,29 @@ public class GroundCollider : MonoBehaviour {
 		else {
 			isGrounded = false;
 		}
-
-	}
+        terrainLayer = LayerMask.GetMask("Terrain");
+        enemyLayer = LayerMask.GetMask("Enemy");
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		CheckForColliders ();
-	}
-	void CheckForColliders()
+		CheckForColliders (terrainLayer);
+        if(!isGrounded)
+        {
+            CheckForColliders(enemyLayer);
+        }
+    }
+	void CheckForColliders(int layerNumber)
 	{
-		Collider2D[] collidersInCircle = Physics2D.OverlapCircleAll (transform.position, radious);
-		for (int i = 0; i < collidersInCircle.GetLength (0); i++) {
-			if (collidersInCircle [i].tag != "Player") {
-				if (collidersInCircle.GetLength (0) != 0) {
-					isGrounded = true;
-				}
-			}
-		}
+        collidersInCircle = Physics2D.OverlapCircleAll (transform.position, radious, layerNumber);
 
+			if (collidersInCircle.GetLength (0) != 0) {
+				isGrounded = true;
+            }
+            else
+            {
+                isGrounded = false;
+            }
 	}
 
 	void OnCollisionEnter2D(Collision2D coll) {

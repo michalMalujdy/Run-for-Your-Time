@@ -17,13 +17,13 @@ public class MouseInput : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         if (Input.GetMouseButtonUp(0))
         {
             distance = Camera.main.ScreenToWorldPoint(Input.mousePosition) - mainCharacter.position;
             onDragComponent.PrepareArrowToShoot(distance);
         }
-#endif
+//#endif
     }
 
 }

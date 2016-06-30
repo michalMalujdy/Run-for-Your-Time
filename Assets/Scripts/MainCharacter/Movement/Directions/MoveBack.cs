@@ -7,14 +7,52 @@ public class MoveBack : MonoBehaviour {
 	float buttonUp = Screen.height * 0.34f;
 	float buttonDown = Screen.height * 0.19f;
 	public Run mainCharacter;
-	
-	// Use this for initialization
-	void Start () {
-		
-	}
+    private ChainConnection chainConnectionComponent;
+
+   
+
+    // Use this for initialization
+    void Start () {
+        chainConnectionComponent = mainCharacter.GetComponent<ChainConnection>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		mainCharacter.IsRunningBack = GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.A);
+        if (!chainConnectionComponent.IsCharacterAttachedToChain)
+        {
+            mainCharacter.IsRunningBack = GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.A);
+        }
+    }
+
+    public float ButtonLeft
+    {
+        get
+        {
+            return buttonLeft;
+        }
+    }
+
+    public float ButtonRight
+    {
+        get
+        {
+            return buttonRight;
+        }
+    }
+
+    public float ButtonUp
+    {
+        get
+        {
+            return buttonUp;
+        }
+    }
+
+    public float ButtonDown
+    {
+        get
+        {
+            return buttonDown;
+        }
     }
 }

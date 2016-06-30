@@ -2,20 +2,29 @@
 using System.Collections;
 
 public class MoveForward : MonoBehaviour {
-	float buttonLeft = Screen.width * 0.15f;
-	float buttonRight = Screen.width * 0.25f;
-	float buttonUp = Screen.height * 0.34f;
-	float buttonDown = Screen.height * 0.19f;
-	public Run mainCharacter;
+    private float buttonLeft;
+    private float buttonRight;
+    private float buttonUp;
+    private float buttonDown;
+    public Run mainCharacter;
+    private ChainConnection chainConnectionComponent;
+
 	
 	// Use this for initialization
 	void Start () {
-		
-	}
+        chainConnectionComponent = mainCharacter.GetComponent<ChainConnection>();
+        buttonLeft = Screen.width * 0.15f;
+        buttonRight = Screen.width * 0.25f;
+        buttonUp = Screen.height * 0.34f;
+        buttonDown = Screen.height * 0.19f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		mainCharacter.IsRunningForeward = GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.D);
+        if (!chainConnectionComponent.IsCharacterAttachedToChain)
+        {
+            mainCharacter.IsRunningForeward = GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.D);
+        }
     }
 
 	public float ButtonLeft {
@@ -35,4 +44,12 @@ public class MoveForward : MonoBehaviour {
 			return buttonDown;
 		}
 	}
+
+    public float ButtonRight
+    {
+        get
+        {
+            return buttonRight;
+        }
+    }
 }

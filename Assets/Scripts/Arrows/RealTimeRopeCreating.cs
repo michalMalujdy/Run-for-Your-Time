@@ -91,6 +91,7 @@ public class RealTimeRopeCreating : MonoBehaviour {
         mainCharacter.GetComponent<HingeJoint2D>().anchor = anchorFromCharacter;
 
         mainCharacter.GetComponent<ChainConnection>().IsCharacterAttachedToChain = true;
+        mainCharacter.GetComponent<Run>().StopRunning();
 
 		for (int i = 0; i < listOfChainCells.Count; i++) {
 			Physics2D.IgnoreCollision (mainCharacter.GetComponent<Collider2D> (), listOfChainCells [i].GetComponent<Collider2D> ());
