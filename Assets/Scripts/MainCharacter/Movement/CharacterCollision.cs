@@ -35,7 +35,7 @@ public class CharacterCollision : MonoBehaviour {
 	void LateUpdate()
 	{
 		if (makeJumpOff) {
-			JumpOff ();
+			//JumpOff ();
 		}
 	}
 
@@ -44,9 +44,9 @@ public class CharacterCollision : MonoBehaviour {
 
             if (other.gameObject.tag == "Enemy")
             {
-                GetComponent<Stats>().AddSubstractCurrentHealth(-15.0f);
-                CalculateJumpOff();
-                makeJumpOff = true;
+                //GetComponent<Stats>().AddSubstractCurrentHealth(-15.0f);
+                //CalculateJumpOff();
+                //makeJumpOff = true;
             }
         
 	}

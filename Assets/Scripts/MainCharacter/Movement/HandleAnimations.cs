@@ -14,12 +14,51 @@ public class HandleAnimations : MonoBehaviour {
 	public Buttons runButton;
 
 	private string stateNr = "StateNumber";
-	private string shortattack = "ShortAttack";
     private string isDead = "isCharacterDead";
+    private string isAttackClicked = "AttackClicked";
+    private string isCharacterAttacked = "IsCharacterAttacked";
+    private string isNoEnemyAround = "NoEnemyAround";
 
-	private int attack = 3;
+    private int attack = 3;
+    private int voidAttack = 4;
 
-	public AnimationClip ShortKillAnimation;
+    public AnimationClip voidAttackAnimationClip;
+
+    public void setAttackClicked (bool value)
+    {
+        characterAnimator.SetBool(isAttackClicked, value);
+    }
+
+    public void triggerAttackClicked ()
+    {
+        characterAnimator.SetBool(isAttackClicked, true);
+        SwitchBooleanAfterTime(isAttackClicked, false, voidAttackAnimationClip.length / 2.5f);
+    }
+
+    public bool getAttackClicked ()
+    {
+        return characterAnimator.GetBool(isAttackClicked);
+    } 
+
+    public void setIsCharacterAttacked(bool value)
+    {
+        characterAnimator.SetBool(isCharacterAttacked, value);
+    }
+
+    public bool getIsCharacterAttacked()
+    {
+        return characterAnimator.GetBool(isCharacterAttacked);
+    }
+
+    public void setNoEnemyAround(bool value)
+    {
+        characterAnimator.SetBool(isNoEnemyAround, value);
+    }
+
+    public bool getNoEnemyAround()
+    {
+        return characterAnimator.GetBool(isNoEnemyAround);
+    }
 
 	// Use this for initialization
 	void Awake() {
@@ -53,11 +92,24 @@ public class HandleAnimations : MonoBehaviour {
 		}
 	}
 
+    //WLASCIWE ANIMACJE POSTACI
+
 	public void KillingAnimation()
 	{
 		characterAnimator.SetInteger (stateNr, attack);
-		SwitchAnimationAfterTime (0, ShortKillAnimation.length - 0.5f);
+		//SwitchAnimationAfterTime (0, ShortKillAnimation.length - 0.5f);
 	}
+
+    public void VoidAttackAnimation()
+    {
+        characterAnimator.SetInteger(stateNr, attack);
+        //SwitchAnimationAfterTime(0, ShortKillAnimation.length - 0.5f);
+    }
+
+    public void AttackWithNoEnemy()
+    {
+
+    }
 
     public void DeadAnimation()
     {
@@ -65,6 +117,16 @@ public class HandleAnimations : MonoBehaviour {
         runComponent.StopRunning();
     }
 
+    private void SwitchBooleanAfterTime(string name, bool state, float time)
+    {
+        StartCoroutine(SwitchBoolean(name, state, time));
+    }
+
+    private IEnumerator SwitchBoolean (string name, bool state, float time)
+    {
+        yield return new WaitForSeconds(time);
+        characterAnimator.SetBool(name, state);
+    }
 
 	private void SwitchAnimationAfterTime (int nextAnimationNr, float time)
 	{

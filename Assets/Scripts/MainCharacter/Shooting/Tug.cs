@@ -9,6 +9,7 @@ public class Tug : MonoBehaviour {
 	private float armRadious = 1.5f;
 	private EnemyKilling enemyKillComponent;
 	private ChainConnection chainConnectionComponent;
+    private GameObject arrowConnected;
 
     public Buttons runButton;
     public Buttons backButton;
@@ -28,12 +29,13 @@ public class Tug : MonoBehaviour {
 		}
 	}
 
-	public void StartTugging()
+	public void StartTugging(GameObject arrow)
 	{
 		isTuggingEnable = true;
 		rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
         runButton.IsButtonActive = false;
         backButton.IsButtonActive = false;
+        arrowConnected = arrow;
     }
 	public void StopTugging()
 	{
@@ -41,6 +43,7 @@ public class Tug : MonoBehaviour {
 		rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         runButton.IsButtonActive = true;
         backButton.IsButtonActive = true;
+        arrowConnected.GetComponent<FixedJoint2D>().enabled = false;
     }
 
 	private void CheckForKill()

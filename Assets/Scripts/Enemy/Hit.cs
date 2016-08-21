@@ -16,7 +16,7 @@ public class Hit : MonoBehaviour {
 
 	void Awake(){
 		mainCharacter = GameObject.FindWithTag("Player").GetComponent<ShootingMode>();
-		fixedJoint = GetComponents<FixedJoint2D> ()[1];
+		fixedJoint = GetComponent<FixedJoint2D> ();
 		handleKilling = GameObject.FindWithTag ("Player").GetComponent<EnemyKilling>();
 		arrowType = GetComponent<Shoot> ();
 		tugComponent = mainCharacter.GetComponent <Tug> ();
@@ -86,7 +86,7 @@ public class Hit : MonoBehaviour {
 		GetComponent<RealTimeRopeCreating> ().StartMakingChain = true;
         //GetComponent<BoxCollider2D> ().enabled = false;
         IgnoreOnCollisionEnter = true;
-		tugComponent.StartTugging ();
+		tugComponent.StartTugging (gameObject);
 	}
 
     void IgnoreCollisionByTag(string tag, Collision2D coll)

@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Jump : MonoBehaviour {
 
-	float buttonLeft = Screen.width * 0.88f;
-	float buttonRight = Screen.width * 0.98f;
-	float buttonUp = Screen.height * 0.34f;
-	float buttonDown = Screen.height * 0.19f;
+	float buttonLeft = Screen.width * 0.77f;
+	float buttonRight = Screen.width * 0.87f;
+	float buttonUp = Screen.height * 0.19f;
+	float buttonDown = Screen.height * 0.03f;
 
 	public Rigidbody2D mainCharacterRB;
 	private ChainConnection mainCharacterChainConnection;
