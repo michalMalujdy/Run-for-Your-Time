@@ -4,8 +4,8 @@ using System.Collections;
 public class Combat : MonoBehaviour {
 
 	private Rigidbody2D rbComponent;
-    private Attack attackComponent;
-    private float ableToAttackRadious = 1.5f;
+    public Attack attackComponent;
+    private float ableToAttackRadious = 2.2f;
     private float getHurtRadious = 0.8f;
     private HandleAnimations animationComponent;
 
@@ -48,12 +48,18 @@ public class Combat : MonoBehaviour {
 
         if (enemiesAround.Length > 0)
         {
+            if(attackComponent.enemiesNumber != enemiesAround.Length)
+            {
+                attackComponent.StartGlowing(enemiesAround.Length);
+            }
             animationComponent.setNoEnemyAround(false);
         }
         else
         {
             animationComponent.setNoEnemyAround(true);
         }
+
+        attackComponent.enemiesNumber = enemiesAround.Length;
 
         enemiesAttacking = EnemiesInRange(getHurtRadious);
         if (enemiesAttacking.Length > 0)
