@@ -14,6 +14,7 @@ public abstract class Enemy_Abstract: MonoBehaviour
     public Animator animator;
 
     public abstract void Attack();
+    public abstract void Die();
 
     public void SwitchBooleanAfterTime(string name, bool state, float time)
     {

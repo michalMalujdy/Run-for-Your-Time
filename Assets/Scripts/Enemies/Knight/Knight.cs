@@ -22,5 +22,8 @@ public class Knight : Enemy_Abstract {
         SwitchBooleanAfterTime("Attack", false, knightAnimationsComponent.attack1.length);
     }
 
-    
+    public override void Die()
+    {
+        Debug.Log("Knight died");
+    }
 }

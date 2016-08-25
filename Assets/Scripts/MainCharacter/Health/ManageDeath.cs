@@ -24,18 +24,14 @@ public class ManageDeath : MonoBehaviour {
         {
             Die();
         }
-        if(transformComponent.position.y < LowestYPoint)
-        {
-            Die();
-            GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-        }
 	}
 
-    void Die()
+    public void Die()
     {
         characterAnimations.DeadAnimation();
         DeathCanvas.gameObject.SetActive(true);
         GetComponent<Run>().StopRunning();
         ButtonCanvas.SetActive(false);
+        GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
     }
 }

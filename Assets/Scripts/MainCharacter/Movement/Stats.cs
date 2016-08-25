@@ -8,7 +8,15 @@ public class Stats : MonoBehaviour {
 	private float currentHealth = 100.0f;
 	private float maxHealth = 100.0f;
 
-
+    public float getCurrentHealth()
+    {
+        return currentHealth;
+    }
+    
+    public float getMaxHealth()
+    {
+        return maxHealth;
+    }
 	// Use this for initialization
 	void Start () {
 	

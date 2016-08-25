@@ -111,6 +111,9 @@ public class CharacterCollision : MonoBehaviour {
 			return false;
 		}
 	}
-
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Kurwa mac");
+    }
 
 }
