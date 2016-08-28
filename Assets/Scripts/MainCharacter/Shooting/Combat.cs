@@ -23,7 +23,7 @@ public class Combat : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rbComponent = GetComponent<Rigidbody2D>();
-        animationComponent = GetComponent<HandleAnimations>();
+        animationComponent = GetComponent<HandleAnimations>();        
 	}
 	
 	// Update is called once per frame
@@ -39,6 +39,10 @@ public class Combat : MonoBehaviour {
     public void MeleeAttack()
     {
         animationComponent.triggerAttackClicked();
+        if(enemiesAround.Length > 0)
+        {
+            enemiesAround[0].GetComponent<Enemy_Abstract>().Die();
+        }
     }
 
     private void CheckForEnemiesAround()

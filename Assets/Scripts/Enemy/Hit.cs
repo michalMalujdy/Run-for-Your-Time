@@ -13,6 +13,7 @@ public class Hit : MonoBehaviour {
 	private Tug tugComponent;
     private bool hitBefore = false;
     public bool IgnoreOnCollisionEnter { get; set; }
+    private GameObject hitGameObject;
 
 	void Awake(){
 		mainCharacter = GameObject.FindWithTag("Player").GetComponent<ShootingMode>();
@@ -52,6 +53,7 @@ public class Hit : MonoBehaviour {
             {
 
                 CollisionWithTerrain();
+                coll.gameObject.GetComponent<CharacterClimbUp>().setArrowStuckIn(true);
                 if (mainCharacter.SwingMode)
                 {
                     GetComponent<RealTimeRopeCreating>().StartMakingChain = true;
@@ -59,6 +61,7 @@ public class Hit : MonoBehaviour {
                 GetComponent<Rigidbody2D>().isKinematic = true;//sprawia że po uderzeniu ustalona rotacja i translacja strzaly sie nie zmienia
             }
             isHit = true;
+            hitGameObject = coll.gameObject;
         }
     }
 
@@ -72,6 +75,7 @@ public class Hit : MonoBehaviour {
 		Vector2 shortenVelocity = Vectors.ShortenVector(velocity, stickInDistance);
 		transform.localPosition = new Vector2(transform.localPosition.x + shortenVelocity.x,transform.localPosition.y + shortenVelocity.y);
         IgnoreOnCollisionEnter = true;
+
 	}
 
     
@@ -109,6 +113,10 @@ public class Hit : MonoBehaviour {
 		}
 		set {
 			isHit = value;
+            if(hitGameObject.tag == "Terrain")
+            {
+                GetComponent<CharacterClimbUp>().setArrowStuckIn(false);
+            }
 		}
 	}
 }
