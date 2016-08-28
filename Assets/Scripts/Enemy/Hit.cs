@@ -68,6 +68,7 @@ public class Hit : MonoBehaviour {
     void CollisionWithTerrain(){
 		GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.0f, 0.0f);
 		GetComponent<Rigidbody2D> ().angularVelocity = 0.0f;
+        GetComponent<SpriteRenderer>().sortingLayerName = "ArrowStuck";
 
 		//transform.localRotation = Quaternion.Euler(0.0f,0.0f,GetComponent<Shoot>().Alpha);
 		Vector2 velocity = GetComponent<Shoot>().velocity;
