@@ -14,12 +14,13 @@ public class TileWindow : EditorWindow
 	private static Vector2 gridSize = new Vector2(1.28f, 1.28f);
 	private static bool isGrid;
 	private static bool isDraw;
-	private static bool addBoxCollider;
+	private static bool addBoxCollider = false;
 	private static bool isObjmode;
 	private static DRAWOPTION selected;
 	private static GameObject parentObj;
 	private static int layerOrd;
 	private static string tagName;
+    private static string sortingLayer;
 	private int index;
 	private string[] options;
 	private Sprite[] allSprites;
@@ -28,6 +29,8 @@ public class TileWindow : EditorWindow
 	private static GameObject activeGo;
 	public GUIStyle textureStyle;
 	public GUIStyle textureStyleAct;
+
+    private int columnLength = 100;
 
 	[MenuItem("Tools/TilemapEditor")]
 	private static void TilemapEditor()
@@ -137,10 +140,20 @@ public class TileWindow : EditorWindow
 									GameObject newgo = new GameObject(activeSprite.name, typeof(SpriteRenderer));
 									newgo.transform.position = mouseWorldPos;
 									newgo.GetComponent<SpriteRenderer>().sprite = activeSprite;
-									newgo.tag = tagName;
+                                    if(tagName != null)
+                                    {
+                                        newgo.tag = tagName;
+                                    }
+                                    else
+                                    {
+                                        newgo.tag = "Untagged";
+                                    }
+                                    if(sortingLayer != null)
+                                    {
+                                        newgo.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayer;
+                                    }
 									if (addBoxCollider)
 										newgo.AddComponent<BoxCollider2D>();
-									if (parentObj != null)
 										newgo.transform.parent = parentObj.transform;
 								}
 							}
@@ -159,8 +172,19 @@ public class TileWindow : EditorWindow
 									GameObject newgo = new GameObject(activeSprite.name, typeof(SpriteRenderer));
 									newgo.transform.position = mouseWorldPos;
 									newgo.GetComponent<SpriteRenderer>().sprite = activeSprite;
-									newgo.tag = tagName;
-									if (addBoxCollider)
+                                    if(newgo.tag != null)
+                                    {
+                                        newgo.tag = tagName;
+                                    }
+                                    else
+                                    {
+                                        newgo.tag = "Untagged";
+                                    }
+                                    if (sortingLayer != null)
+                                    {
+                                        newgo.GetComponent<SpriteRenderer>().sortingLayerName = sortingLayer;
+                                    }
+                                    if (addBoxCollider)
 										newgo.AddComponent<BoxCollider2D>();
 								}
 							}
@@ -254,41 +278,58 @@ public class TileWindow : EditorWindow
 		}
 		files = Directory.GetFiles(Application.dataPath + "/Tilemaps/", "*.png");
 		options = new string[files.Length];
-		EditorGUILayout.LabelField("Tile Map", GUILayout.Width(256));
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Tile Map", GUILayout.Width(columnLength));
 		for(int i = 0; i < files.Length; i++)
 		{
 			options[i] = files[i].Replace(Application.dataPath + "/Tilemaps/", "");
 		}
-		index = EditorGUILayout.Popup(index, options, GUILayout.Width(256));
-		GUILayout.BeginHorizontal();
-		isGrid = EditorGUILayout.Toggle(isGrid, GUILayout.Width(16));
-		gridSize = EditorGUILayout.Vector2Field("Grid Size (0.05 minimum)", gridSize,  GUILayout.Width(236));
-		GUILayout.EndHorizontal();
+		index = EditorGUILayout.Popup(index, options, GUILayout.Width(columnLength));
+        GUILayout.EndHorizontal();
 
-		EditorGUILayout.LabelField("Parent Object", GUILayout.Width(256));
-		parentObj = (GameObject)EditorGUILayout.ObjectField(parentObj, typeof(GameObject),true,GUILayout.Width(256));
 
-		GUILayout.BeginHorizontal();
+        GUILayout.BeginHorizontal();
+        isGrid = EditorGUILayout.Toggle(isGrid, GUILayout.Width(16));
+        EditorGUILayout.LabelField("Show Grid");
+        GUILayout.EndHorizontal();
+        if (isGrid)
+        {
+
+            GUILayout.BeginHorizontal();
+            gridSize = EditorGUILayout.Vector2Field("Grid Size (0.05 minimum)", gridSize, GUILayout.Width(columnLength * 2));
+            GUILayout.EndHorizontal();
+        }
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Parent Object", GUILayout.Width(columnLength));
+		parentObj = (GameObject)EditorGUILayout.ObjectField(parentObj, typeof(GameObject),true,GUILayout.Width(columnLength));
+        GUILayout.EndHorizontal();
+
+        /*GUILayout.BeginHorizontal();
 		addBoxCollider = EditorGUILayout.Toggle(addBoxCollider, GUILayout.Width(16));
 		EditorGUILayout.LabelField("Add Box Collider", GUILayout.Width(256));
-		GUILayout.EndHorizontal();
-
-		EditorGUILayout.LabelField("Layer Order", GUILayout.Width(256));
+		GUILayout.EndHorizontal();*/        
 
 		GUILayout.BeginHorizontal();
-		layerOrd = EditorGUILayout.IntField(layerOrd,  GUILayout.Width(126));
-		isObjmode = EditorGUILayout.Toggle(isObjmode, GUILayout.Width(16));
-		EditorGUILayout.LabelField("Layer based on Y", GUILayout.Width(110));
+        EditorGUILayout.LabelField("Layer Order", GUILayout.Width(columnLength));
+        layerOrd = EditorGUILayout.IntField(layerOrd, GUILayout.Width(columnLength));
+        //isObjmode = EditorGUILayout.Toggle(isObjmode, GUILayout.Width(16));
+        //EditorGUILayout.LabelField("Layer based on Y", GUILayout.Width(110));
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Sorting Layer", GUILayout.Width(columnLength));
+        sortingLayer = EditorGUILayout.TextField (sortingLayer, GUILayout.Width(columnLength));
+        GUILayout.EndHorizontal();
+
+        GUILayout.BeginHorizontal();
+        EditorGUILayout.LabelField("Tag", GUILayout.Width(columnLength));
+		tagName = EditorGUILayout.TagField(tagName, GUILayout.Width(columnLength));
 		GUILayout.EndHorizontal();
 
-		EditorGUILayout.LabelField("Tag", GUILayout.Width(32));
-		GUILayout.BeginHorizontal();
-		tagName = EditorGUILayout.TagField(tagName, GUILayout.Width(236));
-		GUILayout.EndHorizontal();
-
-		GUILayout.BeginHorizontal();
+        GUILayout.BeginHorizontal();
 		isDraw = EditorGUILayout.Toggle(isDraw, GUILayout.Width(16));
-		selected = (DRAWOPTION)EditorGUILayout.EnumPopup(selected, GUILayout.Width(236));
+		selected = (DRAWOPTION)EditorGUILayout.EnumPopup(selected, GUILayout.Width(columnLength - 16));
 		GUILayout.EndHorizontal();
 
 		_scrollPos = EditorGUILayout.BeginScrollView(_scrollPos);

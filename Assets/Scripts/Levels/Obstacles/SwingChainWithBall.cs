@@ -4,15 +4,21 @@ using System.Collections;
 public class SwingChainWithBall : MonoBehaviour {
 
     private Rigidbody2D rbComponent;
+    private float yStartPositon;
+    private float positionMargin = 0.1f;
+    private bool forceAdded = false;
 
-    private Vector2 initialForce = new Vector2 (1500000.0f, 0.0f);
-    private float sustainingXForce = 500000f;
+    private Vector2 initialForce = new Vector2 (3500000.0f, 0.0f);
+    private float sustainingForce = 100000f;
 
     private float xSpeedMargin = 0.15f;
+
+    private float maxAngle = 0.0f;
      
     // Use this for initialization
 	void Start () {
         rbComponent = GetComponent<Rigidbody2D>();
+        yStartPositon = rbComponent.position.y;
 
         rbComponent.AddForce(initialForce);
 	}
@@ -20,9 +26,23 @@ public class SwingChainWithBall : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if(rbComponent.velocity.x < xSpeedMargin && rbComponent.velocity.x > -xSpeedMargin)
+        /*if(rbComponent.rotation > Mathf.Abs(maxAngle))
         {
-            rbComponent.AddForce(new Vector2(sustainingXForce * (-Mathf.Sign(rbComponent.velocity.x)), - sustainingXForce));
-        }	
+            maxAngle = Mathf.Abs(rbComponent.rotation);
+            Debug.Log("Max angle = " + maxAngle);
+        }*/
+
+        if(rbComponent.position.y <= yStartPositon + positionMargin && rbComponent.position.y >= yStartPositon - positionMargin)
+        {
+            if(!forceAdded)
+            {
+                rbComponent.AddForce(new Vector2(sustainingForce * Mathf.Sign(rbComponent.velocity.x), sustainingForce));
+                forceAdded = true;
+            }
+        }
+        else
+        {
+            forceAdded = false;
+        }
 	}
 }
