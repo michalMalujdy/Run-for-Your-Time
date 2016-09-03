@@ -2,8 +2,7 @@
 using System.Collections;
 
 public class GroundCollider : MonoBehaviour {
-
-	private Jump jumpComponent;
+    
 	public Rigidbody2D maincharacter;
 	private bool isGrounded;
 	private Transform transformComponent;

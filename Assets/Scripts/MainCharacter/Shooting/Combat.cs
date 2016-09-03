@@ -20,6 +20,11 @@ public class Combat : MonoBehaviour {
     private bool retreating = false;
     private bool underAttackProcedureStarted = false;
 
+    public void MakeRetreat(int direction)
+    {
+        retreating = true;
+    }
+
     // Use this for initialization
     void Start () {
         rbComponent = GetComponent<Rigidbody2D>();

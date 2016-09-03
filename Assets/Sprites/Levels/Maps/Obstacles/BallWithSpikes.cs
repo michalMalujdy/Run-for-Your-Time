@@ -4,7 +4,7 @@ using System.Collections;
 public class BallWithSpikes : MonoBehaviour {
 
     public float damage = 30.0f;
-    //public float xForceOnPlayer = 1000.0f;
+    public int cellsNumber;
 
 
     private float cantMoveTimer = 0.0f;
@@ -18,6 +18,10 @@ public class BallWithSpikes : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
+        if(cellsNumber == 11)
+        {
+
+        }
 	
 	}
 	
