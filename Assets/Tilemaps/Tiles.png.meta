@@ -1,32 +1,27 @@
 fileFormatVersion: 2
-guid: 475a8630cc7138b4e925fae285c5fcc3
-timeCreated: 1475421549
+guid: de220829b6aa0e54888326edadce3753
+timeCreated: 1475410694
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: objects_0
-    21300002: objects_1
-    21300004: objects_2
-    21300006: objects_3
-    21300008: objects_4
-    21300010: objects_5
-    21300012: objects_6
-    21300014: objects_7
-    21300016: objects_8
-    21300018: objects_9
-    21300020: objects_10
-    21300022: objects_11
-    21300024: objects_12
-    21300026: objects_13
-    21300028: objects_14
-    21300030: objects_15
-    21300032: objects_16
-    21300034: objects_17
-    21300036: objects_18
-    21300038: objects_19
-    21300040: objects_20
-    21300042: objects_21
-    21300044: objects_22
+    21300000: Tiles_0
+    21300002: Tiles_1
+    21300004: Tiles_2
+    21300006: Tiles_3
+    21300008: Tiles_4
+    21300010: Tiles_5
+    21300012: Tiles_6
+    21300014: Tiles_7
+    21300016: Tiles_8
+    21300018: Tiles_9
+    21300020: Tiles_10
+    21300022: Tiles_11
+    21300024: Tiles_12
+    21300026: Tiles_13
+    21300028: Tiles_14
+    21300030: Tiles_15
+    21300032: Tiles_16
+    21300034: Tiles_17
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -52,7 +47,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 2
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -76,299 +71,234 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: objects_0
+      name: Tiles_0
       rect:
         serializedVersion: 2
-        x: 8
-        y: 128
-        width: 112
-        height: 74
+        x: 17
+        y: 582
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_1
+      name: Tiles_1
       rect:
         serializedVersion: 2
-        x: 139
-        y: 192
-        width: 14
-        height: 12
+        x: 150
+        y: 580
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_2
+      name: Tiles_2
       rect:
         serializedVersion: 2
-        x: 165
-        y: 192
-        width: 26
-        height: 21
+        x: 282
+        y: 578
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_3
+      name: Tiles_3
       rect:
         serializedVersion: 2
-        x: 197
-        y: 192
-        width: 22
-        height: 16
+        x: 427
+        y: 595
+        width: 128
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_4
+      name: Tiles_4
       rect:
         serializedVersion: 2
-        x: 226
-        y: 192
-        width: 59
-        height: 24
+        x: 562
+        y: 592
+        width: 128
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_5
+      name: Tiles_5
       rect:
         serializedVersion: 2
-        x: 301
-        y: 192
-        width: 45
-        height: 30
+        x: 697
+        y: 593
+        width: 128
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_6
+      name: Tiles_6
       rect:
         serializedVersion: 2
-        x: 352
-        y: 192
-        width: 32
-        height: 32
+        x: 17
+        y: 446
+        width: 129
+        height: 129
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_7
+      name: Tiles_7
       rect:
         serializedVersion: 2
-        x: 392
-        y: 199
-        width: 20
-        height: 25
+        x: 151
+        y: 446
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Tiles_8
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 446
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_8
+      name: Tiles_9
       rect:
         serializedVersion: 2
-        x: 135
-        y: 129
-        width: 40
-        height: 63
+        x: 430
+        y: 459
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_9
+      name: Tiles_10
       rect:
         serializedVersion: 2
-        x: 197
-        y: 128
-        width: 23
-        height: 59
+        x: 564
+        y: 458
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_10
+      name: Tiles_11
       rect:
         serializedVersion: 2
-        x: 229
-        y: 160
-        width: 55
-        height: 23
+        x: 699
+        y: 457
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_11
+      name: Tiles_12
       rect:
         serializedVersion: 2
-        x: 289
-        y: 161
-        width: 30
-        height: 31
+        x: 18
+        y: 311
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_12
+      name: Tiles_13
       rect:
         serializedVersion: 2
-        x: 326
-        y: 160
-        width: 17
-        height: 17
+        x: 150
+        y: 312
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_13
+      name: Tiles_14
       rect:
         serializedVersion: 2
-        x: 359
-        y: 160
-        width: 21
-        height: 19
+        x: 282
+        y: 310
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_14
+      name: Tiles_15
       rect:
         serializedVersion: 2
-        x: 388
-        y: 160
-        width: 20
-        height: 29
+        x: 20
+        y: 179
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_15
+      name: Tiles_16
       rect:
         serializedVersion: 2
-        x: 234
-        y: 128
-        width: 41
-        height: 21
+        x: 151
+        y: 189
+        width: 128
+        height: 99
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: objects_16
+      name: Tiles_17
       rect:
         serializedVersion: 2
-        x: 298
-        y: 128
-        width: 44
-        height: 21
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: objects_17
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 65
-        width: 59
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: objects_18
-      rect:
-        serializedVersion: 2
-        x: 68
-        y: 65
-        width: 59
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: objects_19
-      rect:
-        serializedVersion: 2
-        x: 132
-        y: 65
-        width: 59
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: objects_20
-      rect:
-        serializedVersion: 2
-        x: 230
-        y: 93
-        width: 52
-        height: 24
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: objects_21
-      rect:
-        serializedVersion: 2
-        x: 5
-        y: 0
-        width: 58
-        height: 48
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: objects_22
-      rect:
-        serializedVersion: 2
-        x: 76
-        y: 0
-        width: 42
-        height: 52
+        x: 282
+        y: 177
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

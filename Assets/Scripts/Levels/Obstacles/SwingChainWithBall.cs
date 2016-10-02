@@ -22,7 +22,7 @@ public class SwingChainWithBall : MonoBehaviour {
         rbComponent = GetComponent<Rigidbody2D>();
         yStartPositon = rbComponent.position.y;
 
-        if(cellsNumber == 11)
+        if(cellsNumber == 12)
         {
             initialForce = new Vector2(3500000.0f, 0.0f);
             sustainingForce = 100000f;
