@@ -83,6 +83,23 @@ public class Buttons : MonoBehaviour {
         }
     }
 
+    public bool IsButtonOrKeyboardClicked(float buttonLeft, float buttonRight, float buttonDown, float buttonUp, KeyCode key)
+    {
+        if (isButtonActive)
+        {
+            bool result = GetComponent<Buttons>().isButtonClicked(buttonLeft, buttonRight, buttonDown, buttonUp);
+            //#if UNITY_EDITOR
+            if (result != true)
+                result = Input.GetKey(key);
+            //#endif
+            return result;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public bool IsButtonActive {
 		get {
 			return isButtonActive;

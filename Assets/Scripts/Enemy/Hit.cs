@@ -37,7 +37,7 @@ public class Hit : MonoBehaviour {
         if (!IgnoreOnCollisionEnter)
         {
 
-            if (coll.gameObject.tag == "Enemy")
+            if (coll.gameObject.tag == "Enemy" && !isHit)
             {
                 if (arrowType.ArrowType == "Shoot")
                 {
@@ -49,7 +49,7 @@ public class Hit : MonoBehaviour {
                     HookEnemy(coll);
                 }
             }
-            else if (coll.gameObject.tag == "Terrain")
+            else if (coll.gameObject.tag == "Terrain" && !isHit)
             {
 
                 CollisionWithTerrain();

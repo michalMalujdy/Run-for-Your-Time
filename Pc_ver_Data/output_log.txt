@@ -14,7 +14,7 @@ Platform assembly: E:\Unity projects\RFYT\PC_ver_Data\Managed\UnityEngine.UI.dll
 Loading E:\Unity projects\RFYT\PC_ver_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: E:\Unity projects\RFYT\PC_ver_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading E:\Unity projects\RFYT\PC_ver_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
-- Completed reload, in  0.600 seconds
+- Completed reload, in  0.674 seconds
 Platform assembly: E:\Unity projects\RFYT\PC_ver_Data\Managed\System.Core.dll (this message is harmless)
 Platform assembly: E:\Unity projects\RFYT\PC_ver_Data\Managed\System.dll (this message is harmless)
 desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
@@ -22,6 +22,26 @@ desktop: 1366x768 60Hz; virtual: 1366x768 at 0,0
 XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
 <RI> Input initialized.
 <RI> Initialized touch support.
-UnloadTime: 47.026764 ms
+UnloadTime: 1.145494 ms
+Width: 1000
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Height: 750
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Damage:-30
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Damage:-15
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Damage:-100
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 183c -> priority: 1 
+  Thread -> id: 2208 -> priority: 1 

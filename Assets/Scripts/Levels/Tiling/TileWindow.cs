@@ -305,10 +305,7 @@ public class TileWindow : EditorWindow
 		parentObj = (GameObject)EditorGUILayout.ObjectField(parentObj, typeof(GameObject),true,GUILayout.Width(columnLength));
         GUILayout.EndHorizontal();
 
-        /*GUILayout.BeginHorizontal();
-		addBoxCollider = EditorGUILayout.Toggle(addBoxCollider, GUILayout.Width(16));
-		EditorGUILayout.LabelField("Add Box Collider", GUILayout.Width(256));
-		GUILayout.EndHorizontal();*/        
+      
 
 		GUILayout.BeginHorizontal();
         EditorGUILayout.LabelField("Layer Order", GUILayout.Width(columnLength));

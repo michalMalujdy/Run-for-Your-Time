@@ -40,7 +40,7 @@ public class CharacterClimbUp : MonoBehaviour {
         {
             if(!isClimbingUp)
             {
-                isUnder = mainCharacter.position.y >= colliderComponent.bounds.center.y - colliderComponent.bounds.extents.y - yOffset && mainCharacter.position.y <= colliderComponent.bounds.center.y - colliderComponent.bounds.extents.y;
+                isUnder = mainCharacter.position.y >= colliderComponent.bounds.center.y + colliderComponent.bounds.extents.y - yOffset && mainCharacter.position.y <= colliderComponent.bounds.center.y + colliderComponent.bounds.extents.y;
                 isOnLeft = (mainCharacter.position.x >= colliderComponent.bounds.center.x - colliderComponent.bounds.extents.x - xOffset) && (mainCharacter.position.x <= colliderComponent.bounds.center.x - colliderComponent.bounds.extents.x);
                 isOnRight = (mainCharacter.position.x <= colliderComponent.bounds.center.x + colliderComponent.bounds.extents.x + xOffset) && (mainCharacter.position.x >= colliderComponent.bounds.center.x + colliderComponent.bounds.extents.x);
                 if (isUnder && (isOnLeft || isOnRight))

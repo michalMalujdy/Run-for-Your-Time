@@ -97,13 +97,13 @@ public class HandleAnimations : MonoBehaviour {
 	public void KillingAnimation()
 	{
 		characterAnimator.SetInteger (stateNr, attack);
-		//SwitchAnimationAfterTime (0, ShortKillAnimation.length - 0.5f);
+		SwitchAnimationAfterTime (0, voidAttackAnimationClip.length - 0.5f);
 	}
 
     public void VoidAttackAnimation()
     {
         characterAnimator.SetInteger(stateNr, attack);
-        //SwitchAnimationAfterTime(0, ShortKillAnimation.length - 0.5f);
+        SwitchAnimationAfterTime(0, voidAttackAnimationClip.length - 0.5f);
     }
 
     public void AttackWithNoEnemy()

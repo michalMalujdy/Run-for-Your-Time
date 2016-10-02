@@ -13,7 +13,7 @@ public class Jump : MonoBehaviour {
 	public GroundCollider groundColliderComponent;
 
 	private bool isJumping = false;
-	public float jumpVelocity = 2.4f;
+	public float jumpVelocity = 1.5f;
 
 	// Use this for initialization
 	void Start () {

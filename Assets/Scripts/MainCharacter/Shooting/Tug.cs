@@ -43,7 +43,7 @@ public class Tug : MonoBehaviour {
 		rb.constraints &= ~RigidbodyConstraints2D.FreezePositionX;
         runButton.IsButtonActive = true;
         backButton.IsButtonActive = true;
-        arrowConnected.GetComponent<FixedJoint2D>().enabled = false;
+        //arrowConnected.GetComponent<FixedJoint2D>().enabled = false;
     }
 
 	private void CheckForKill()

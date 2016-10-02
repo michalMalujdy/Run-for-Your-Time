@@ -15,10 +15,12 @@ public class LurkingEnemy : MonoBehaviour {
     private GameObject chosenPrefab;
     private Attack attackButton;
 
-    public Zoom cameraZoom;
+    private Zoom cameraZoom;
     private float timeToZoomOut = 0.3f;
     private float zoomOutTimer = 0.0f;
     private bool startZoomOutTimer = false;
+
+    public QuickTimeEvent quickTimeEventHandler;
 
     private Transform player;
 
@@ -35,11 +37,10 @@ public class LurkingEnemy : MonoBehaviour {
         {
             chosenEnemy = (GameObject) Instantiate(chosenPrefab, GetComponent<Transform>().position, Quaternion.Euler(0.0f, 0.0f, 0.0f));
             chosenEnemy.GetComponent<Knight>().body[8].GetComponent<WeaponCollisionWithPlayer>().SetLurkingEnemyComponent (this);
-
-            attackButton = GameObject.Find("AttackButton").GetComponent<Attack>();
-            attackButton.SetLurkingEnemyComponent(this);
-
             SetEnemyHidden();
+
+            quickTimeEventHandler = GameObject.FindWithTag("QuickTimeEvent").GetComponent<QuickTimeEvent>();
+                      
         }
         else
         {
@@ -49,14 +50,14 @@ public class LurkingEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(startZoomOutTimer)
+	    /*if(startZoomOutTimer)
         {
             zoomOutTimer += Time.unscaledDeltaTime;
             if(zoomOutTimer >= timeToZoomOut)
             {  
                 EndLurking();
             }
-        }
+        }*/
 	}
 
     private void randomizeOccurance()
@@ -93,20 +94,9 @@ public class LurkingEnemy : MonoBehaviour {
             if(other.GetComponentInChildren<GroundCollider>().IsGrounded)
             {
                 SetEnemyQTEVisible();
-
-                player = GameObject.FindWithTag("Player").GetComponent<Transform>();
-                player.GetComponent<DisableEnableMovement>().disableClimbingAndTugging();
-                player.GetComponent<DisableEnableMovement>().disableJumping();
-                player.GetComponent<DisableEnableMovement>().disableRunning();
-
-
-
-                attackButton.QuickTimeEventMode = true;
-
+                player = GameObject.FindWithTag("Player").GetComponent<Transform>();      
                 chosenEnemy.GetComponent<Enemy_Abstract>().LureAttack(player.position);
-                cameraZoom.ZoomIn();
-
-                Time.timeScale = 0.1f;
+                quickTimeEventHandler.StartQTE(QuickTimeEvent.lurkingEnemy, this, true, "AttackButton");
             }
         }
     }
@@ -142,23 +132,19 @@ public class LurkingEnemy : MonoBehaviour {
         chosenEnemy.GetComponent<Enemy_Abstract>().isHidden = false;
         SetEnemyFullVisible();
 
-        attackButton.QuickTimeEventMode = false;
-
-        startZoomOutTimer = true;
+        EndLurking();
     }
 
     public void EnemyGotHit()
     {
         chosenEnemy.GetComponent<Enemy_Abstract>().Die();
-        attackButton.QuickTimeEventMode = false;
-        startZoomOutTimer = true;
+
+        EndLurking();
     }
 
     private void EndLurking()
-    {        
-        cameraZoom.ZoomOut();
-        player.GetComponent<DisableEnableMovement>().enableMovement();
-        Time.timeScale = 1.0f;
+    {
+        quickTimeEventHandler.EndQTE();
         GetComponent<BoxCollider2D>().enabled = false;
         enabled = false;
     }

@@ -83,4 +83,11 @@ public class DisableEnableMovement : MonoBehaviour {
         enableClimbingAndTugging();
         enableAttack();
     }
+
+    public void disableMovementButAttack()
+    {
+        enableRunning();
+        enableJumping();
+        enableClimbingAndTugging();
+    }
 }

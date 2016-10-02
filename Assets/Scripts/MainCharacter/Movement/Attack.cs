@@ -23,7 +23,18 @@ public class Attack : MonoBehaviour {
     public int enemiesNumber = 0;
     private bool imageGlowed;
 
-    private bool quickTimeEventMode = false;
+    private QuickTimeEvent quickTimeEventHandler;
+    public QuickTimeEvent QuickTimeEventHandler
+    {
+        get
+        {
+            return quickTimeEventHandler;
+        }
+        set
+        {
+            quickTimeEventHandler = value;
+        }
+    }
 
     private LurkingEnemy lurkingEnemyComponent;
 
@@ -58,19 +69,6 @@ public class Attack : MonoBehaviour {
         }
     }
 
-    public bool QuickTimeEventMode
-    {
-        get
-        {
-            return quickTimeEventMode;
-        }
-        set
-        {
-            quickTimeEventMode = value;
-            glowImage.enabled = value;
-        }
-    }
-
     // Use this for initialization
     void Start () {
         mainCharacterAnimationComponent = mainCharacterCombatComponent.GetComponent<HandleAnimations>();
@@ -79,27 +77,24 @@ public class Attack : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if(GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.Z) && !mainCharacterAnimationComponent.getAttackClicked() && !quickTimeEventMode)
+	    if(GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.Z) && !mainCharacterAnimationComponent.getAttackClicked() && !quickTimeEventHandler.QuickTimeEventMode)
         {
             mainCharacterCombatComponent.MeleeAttack();
         }
 
-        if(animation && !quickTimeEventMode)
+        if(animation && !quickTimeEventHandler.QuickTimeEventMode)
         {
             InflateGlowImage();
         }
 
-        if(quickTimeEventMode)
+        if(quickTimeEventHandler.QuickTimeEventMode)
         {
-            //glowImage.enabled = true;
             RepeatInflateGlowImage();
-            if (GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.Z) && !mainCharacterAnimationComponent.getAttackClicked())
+            if (GetComponent<Buttons>().IsButtonOrKeyboardClicked(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.Z) && !mainCharacterAnimationComponent.getAttackClicked())
             {
-                lurkingEnemyComponent.EnemyGotHit();
+                quickTimeEventHandler.AttackButtonClicked();
             }
         }
-
-
 	}
 
     public void StartGlowing(int enemyTabLength)
