@@ -14,10 +14,9 @@ public class RetryButton : MonoBehaviour {
 
     }
      
-    public void Ungabunga()
+    public void Clicked()
     {
         //Application.LoadLevel(Application.loadedLevel);
-        Debug.Log("Reload scene");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
