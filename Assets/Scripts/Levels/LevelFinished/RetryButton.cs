@@ -4,9 +4,20 @@ using UnityEngine.SceneManagement;
 
 public class RetryButton : MonoBehaviour {
     
-    
-    public void Clicked()
+    void Start()
     {
-        Application.LoadLevel(Application.loadedLevel);
+
+    }
+
+    void Update()
+    {
+
+    }
+     
+    public void Ungabunga()
+    {
+        //Application.LoadLevel(Application.loadedLevel);
+        Debug.Log("Reload scene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

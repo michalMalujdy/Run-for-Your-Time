@@ -18,6 +18,8 @@ public class HandleAnimations : MonoBehaviour {
     private string isAttackClicked = "AttackClicked";
     private string isCharacterAttacked = "IsCharacterAttacked";
     private string isNoEnemyAround = "NoEnemyAround";
+    private string isJumping = "IsJumping";
+    private string isFalling = "IsFalling";
 
     private int attack = 3;
     private int voidAttack = 4;
@@ -60,8 +62,29 @@ public class HandleAnimations : MonoBehaviour {
         return characterAnimator.GetBool(isNoEnemyAround);
     }
 
-	// Use this for initialization
-	void Awake() {
+    public void setIsJumping(bool value)
+    {
+        characterAnimator.SetBool(isJumping, value);
+    }
+
+    public bool getIsJumping()
+    {
+        return characterAnimator.GetBool(isJumping);
+    }
+
+    public void setIsFalling(bool value)
+    {
+        characterAnimator.SetBool(isFalling, value);
+    }
+
+    public bool getIsFalling()
+    {
+        return characterAnimator.GetBool(isFalling);
+    }
+
+
+    // Use this for initialization
+    void Awake() {
 		characterAnimator = GetComponent <Animator> ();
 		characterRun = GetComponent <Run> ();
 		rendererComponent = GetComponent <SpriteRenderer> ();

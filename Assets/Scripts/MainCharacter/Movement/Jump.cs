@@ -11,13 +11,19 @@ public class Jump : MonoBehaviour {
 	public Rigidbody2D mainCharacterRB;
 	private ChainConnection mainCharacterChainConnection;
 	public GroundCollider groundColliderComponent;
+    private HandleAnimations characterAnimations;
 
 	private bool isJumping = false;
 	public float jumpVelocity = 1.5f;
 
+    bool isTimerOn = false;
+    float timePassed = 0.0f;
+    float TimeOfJump = 1.2f;
+
 	// Use this for initialization
 	void Start () {
 		mainCharacterChainConnection = mainCharacterRB.GetComponent<ChainConnection> ();
+        characterAnimations = mainCharacterRB.GetComponent<HandleAnimations>();
 	}
 	
 	// Update is called once per frame
@@ -25,13 +31,25 @@ public class Jump : MonoBehaviour {
 		if (!mainCharacterChainConnection.IsCharacterAttachedToChain) {
 			if (GetComponent<Buttons>().IsButtonOrKeyboardDown(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.Space) && !isJumping) {
 				mainCharacterRB.velocity = new Vector2 (mainCharacterRB.velocity.x, mainCharacterRB.velocity.y + jumpVelocity);
-				isJumping = true;
+				IsJumping = true;
 				groundColliderComponent.IsGrounded = false;
+
+                isTimerOn = true;
 			}
 		}
 		if (isJumping && groundColliderComponent.IsGrounded) {
-			isJumping = false;
+			IsJumping = false;
 		}
+
+        if(isTimerOn)
+        {
+            if(timePassed >= TimeOfJump)
+            {
+                IsJumping = false;
+            }
+
+            timePassed += Time.deltaTime;
+        }
 	}
 
 	public bool IsJumping {
@@ -39,7 +57,14 @@ public class Jump : MonoBehaviour {
 			return isJumping;
 		}
 		set {
-			isJumping = value;
+            isJumping = value;
+            characterAnimations.setIsJumping(value);
+
+            isTimerOn = value;
+            if (!value)
+            {
+                timePassed = 0.0f;
+            }
 		}
 	}
 }
