@@ -53,7 +53,10 @@ public class Hit : MonoBehaviour {
             {
 
                 CollisionWithTerrain();
-                coll.gameObject.GetComponent<CharacterClimbUp>().setArrowStuckIn(true);
+                if(coll.gameObject.GetComponent<CharacterClimbUp>())
+                {
+                    coll.gameObject.GetComponent<CharacterClimbUp>().setArrowStuckIn(true);
+                }
                 if (mainCharacter.SwingMode)
                 {
                     GetComponent<RealTimeRopeCreating>().StartMakingChain = true;

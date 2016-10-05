@@ -22,23 +22,20 @@ public class EnemyKilling : MonoBehaviour {
 
 	public void KillEnemyOnShortDistance (Collision2D coll)
 	{
-		Destroy (coll.gameObject);
 		anim.KillingAnimation ();
-		DestroyAfterTime (coll.gameObject, 0.6f);
+		StartCoroutine(DestroyAfterTime (coll.gameObject, 0.1f));
 	}
 
 	public void KillEnemyOnShortDistance (GameObject coll)
 	{
-		Destroy (coll.gameObject);
 		anim.KillingAnimation ();
-		DestroyAfterTime (coll, 0.6f);
-	}
+		StartCoroutine(DestroyAfterTime (coll, 0.1f));
+    }
 
-	IEnumerator DestroyAfterTime(GameObject obj, float time)
+	private IEnumerator DestroyAfterTime(GameObject obj, float time)
 	{
-		yield return new WaitForSeconds (time);
+        
+        yield return new WaitForSeconds (time);
 		Destroy (obj.gameObject);
-	}
-
-
+    }
 }

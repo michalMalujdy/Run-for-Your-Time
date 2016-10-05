@@ -65,7 +65,7 @@ public class CharacterClimbUp : MonoBehaviour {
         {
             mainCharacter.position = new Vector2(colliderComponent.bounds.center.x + colliderComponent.bounds.extents.x - xOffset / 2.5f, colliderComponent.bounds.center.y + colliderComponent.bounds.extents.y + yOffset / 2.5f);
         }
-
+        mainCharacter. GetComponent<Rigidbody2D>().velocity = new Vector2(0.0f, 0.0f);
         mainCharacter.GetComponent<ChainConnection>().Dismount();
         isClimbingUp = false;
         arrowStuckIn = false;

@@ -120,6 +120,7 @@ public class HandleAnimations : MonoBehaviour {
 	public void KillingAnimation()
 	{
 		characterAnimator.SetInteger (stateNr, attack);
+        triggerAttackClicked();
 		SwitchAnimationAfterTime (0, voidAttackAnimationClip.length - 0.5f);
 	}
 
