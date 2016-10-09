@@ -13,12 +13,6 @@ public class LurkingEnemy : MonoBehaviour {
     public GameObject enemyKnightPrefab;
     private GameObject chosenEnemy;
     private GameObject chosenPrefab;
-    private Attack attackButton;
-
-    private Zoom cameraZoom;
-    private float timeToZoomOut = 0.3f;
-    private float zoomOutTimer = 0.0f;
-    private bool startZoomOutTimer = false;
 
     public QuickTimeEvent quickTimeEventHandler;
 
@@ -50,14 +44,6 @@ public class LurkingEnemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    /*if(startZoomOutTimer)
-        {
-            zoomOutTimer += Time.unscaledDeltaTime;
-            if(zoomOutTimer >= timeToZoomOut)
-            {  
-                EndLurking();
-            }
-        }*/
 	}
 
     private void randomizeOccurance()

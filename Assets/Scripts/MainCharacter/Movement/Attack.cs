@@ -92,6 +92,7 @@ public class Attack : MonoBehaviour {
             RepeatInflateGlowImage();
             if (GetComponent<Buttons>().IsButtonOrKeyboardClicked(buttonLeft, buttonRight, buttonDown, buttonUp, KeyCode.Z) && !mainCharacterAnimationComponent.getAttackClicked())
             {
+                mainCharacterAnimationComponent.triggerAttackClicked();
                 quickTimeEventHandler.AttackButtonClicked();
             }
         }
