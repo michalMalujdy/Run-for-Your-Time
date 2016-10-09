@@ -57,13 +57,16 @@ public class Jump : MonoBehaviour {
 			return isJumping;
 		}
 		set {
-            isJumping = value;
-            characterAnimations.setIsJumping(value);
-
-            isTimerOn = value;
-            if (!value)
+            if(isJumping != value)
             {
-                timePassed = 0.0f;
+                isJumping = value;
+                characterAnimations.setIsJumping(value);
+
+                isTimerOn = value;
+                if (!value)
+                {
+                    timePassed = 0.0f;
+                }
             }
 		}
 	}

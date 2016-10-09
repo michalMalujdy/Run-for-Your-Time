@@ -18,11 +18,6 @@ public class DeathArea : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        Debug.Log("kolizja");
-    }
-
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.tag == "Player")
