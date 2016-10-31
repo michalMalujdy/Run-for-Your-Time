@@ -154,7 +154,10 @@ public class TileWindow : EditorWindow
                                     }
 									if (addBoxCollider)
 										newgo.AddComponent<BoxCollider2D>();
-										newgo.transform.parent = parentObj.transform;
+                                    if (parentObj != null)
+                                    {
+                                        newgo.transform.parent = parentObj.transform;
+                                    }
 								}
 							}
 							else if (selected == DRAWOPTION.paintover)
@@ -372,5 +375,4 @@ public class TileWindow : EditorWindow
 		EditorGUILayout.EndScrollView();
 		SceneView.RepaintAll();
 	}
-}
-*/
+}*/

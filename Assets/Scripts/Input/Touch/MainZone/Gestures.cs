@@ -11,21 +11,22 @@ public class Gestures : MonoBehaviour {
 	private float tapDistanceY = 100.0f;
 	private int tapCounter = 0;
 	private float timeBetweenTaps = 0.0f;
-	private float maxTimeBetweenTaps = 0.5f;
+	private float maxTimeBetweenTaps = 0.25f;
 	private bool isTimercounting = false;
 	private Vector2 previousTapCoordinates;
 	private bool tapedTwice = false;
-
+    private OnDrag onDragComponent;
 
 	// Use this for initialization
 	void Start () {
-	
+	    onDragComponent = GetComponent<OnDrag>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (isTimercounting) {
 			CountTimeBetweenTaps ();
+            Debug.Log("das");
 		}
 	}
 
@@ -73,6 +74,9 @@ public class Gestures : MonoBehaviour {
 			isTimercounting = false;
 			timeBetweenTaps = 0.0f;
 			tapCounter = 0;
+            Debug.Log(previousTapCoordinates);
+
+            onDragComponent.TapShoot(previousTapCoordinates);
 		}
 	}
 

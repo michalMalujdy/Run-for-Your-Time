@@ -4,9 +4,9 @@ using System.Collections;
 public class MoveUp : MonoBehaviour {
 
 	float buttonLeft = Screen.width * 0.08f;
-	float buttonRight = Screen.width * 0.18f;
-	float buttonUp = Screen.height * 0.5f;
-	float buttonDown = Screen.height * 0.35f;
+	float buttonRight = Screen.width * 0.16f;
+	float buttonUp = Screen.height * 0.45f;
+	float buttonDown = Screen.height * 0.30f;
 	public MoveAlongRope mainCharacter;
 
 	// Use this for initialization

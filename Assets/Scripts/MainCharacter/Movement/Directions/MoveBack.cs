@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class MoveBack : MonoBehaviour {
-	float buttonLeft = Screen.width * 0.02f;
-	float buttonRight = Screen.width * 0.12f;
-	float buttonUp = Screen.height * 0.34f;
-	float buttonDown = Screen.height * 0.19f;
+	float buttonLeft = Screen.width * 0.00f;
+	float buttonRight = Screen.width * 0.08f;
+	float buttonUp = Screen.height * 0.30f;
+	float buttonDown = Screen.height * 0.15f;
 	public Run mainCharacter;
     private ChainConnection chainConnectionComponent;
 

@@ -13,10 +13,10 @@ public class MoveForward : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         chainConnectionComponent = mainCharacter.GetComponent<ChainConnection>();
-        buttonLeft = Screen.width * 0.15f;
+        buttonLeft = Screen.width * 0.17f;
         buttonRight = Screen.width * 0.25f;
-        buttonUp = Screen.height * 0.34f;
-        buttonDown = Screen.height * 0.19f;
+        buttonUp = Screen.height * 0.30f;
+        buttonDown = Screen.height * 0.15f;
     }
 	
 	// Update is called once per frame

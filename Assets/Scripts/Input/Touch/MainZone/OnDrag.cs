@@ -11,52 +11,93 @@ public class OnDrag : MonoBehaviour {
 	private bool hasBeenTracked = false;
 	private float dragMin = Screen.width * 0.05f;
 	private float leftBorder = Screen.width * 0.27f;
-	private float downBorder = Screen.height * 0.12f;
+	private float downBorder = Screen.height * 0.17f;
+    private float rightBorder = Screen.width * 0.87f;
 
-	public GameObject arrowPrefab;
+    public GameObject arrowPrefab;
 	public GameObject mainCharacter;
 	private float mainCharacterCircle = 1.2f;
 	private Vector2 arrowVelocity;
 	public float alpha;
 	private Touch findedEndedTouch;
+    public ChainConnection chainConnectionComponent;
 
 	// Use this for initialization
 	void Start () {
-	
+	    
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//Jest sprawdzany tylko jeden dotyk dla strzelania, wiec warunek czy juz jakis jest sledzony
-		if (!hasBeenTracked) {
-			//przejscie po petli wszystkich dotykow i sprawdzenie czy ktorys sie zaczal i jest w porzadanym obszarze
-			foreach (Touch touch in Input.touches) {
-				if(touch.position.x >= leftBorder && touch.position.y >= downBorder){
-					if (touch.phase == TouchPhase.Began) {
-						//Jesli tak, to zbieram jego id zeby mozna bylo go znalezc, pozycje poczatkowa zeby ustalic wektor przesuniecia palcem i zaznaczam ze dotyk jest sledzony
-						ID = touch.fingerId;
-						startPosition = touch.position;
-						hasBeenTracked = true;
-					}
-				}
-			}
-		}
-		else {
-			//Wykonuje sie gdy dotyk jest sledzony
-			FindByFingerID(ID);
-			Touch touch = findedEndedTouch;
-			currentPosition = touch.position;
-			distance = currentPosition - startPosition;
-			//Jesli palec zostal puszczony i pokonana droga jest wieksza od minimum
-			if(touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled){
-				if(distance.magnitude >= dragMin){
-                    PrepareArrowToShoot(distance);
-					}
-				hasBeenTracked = false;
-				endPosition = new Vector2 (0.0f,0.0f);
-			}
-		}
+        //DragModeShoot();
+        if(!chainConnectionComponent.IsCharacterAttachedToChain)
+        {
+            TapModeShoot();
+        }
 	}
+
+    private void DragModeShoot()
+    {
+        //Jest sprawdzany tylko jeden dotyk dla strzelania, wiec warunek czy juz jakis jest sledzony
+        if (!hasBeenTracked)
+        {
+            //przejscie po petli wszystkich dotykow i sprawdzenie czy ktorys sie zaczal i jest w porzadanym obszarze
+            foreach (Touch touch in Input.touches)
+            {
+                if ((touch.position.x >= leftBorder && touch.position.y >= downBorder && touch.position.x <= rightBorder) || (touch.position.y > Screen.height * 0.33f && touch.position.x >= leftBorder))
+                {
+                    if (touch.phase == TouchPhase.Began)
+                    {
+                        //Jesli tak, to zbieram jego id zeby mozna bylo go znalezc, pozycje poczatkowa zeby ustalic wektor przesuniecia palcem i zaznaczam ze dotyk jest sledzony
+                        ID = touch.fingerId;
+                        startPosition = touch.position;
+                        hasBeenTracked = true;
+                    }
+                }
+            }
+        }
+        else
+        {
+            //Wykonuje sie gdy dotyk jest sledzony
+            FindByFingerID(ID);
+            Touch touch = findedEndedTouch;
+            currentPosition = touch.position;
+            distance = currentPosition - startPosition;
+            //Jesli palec zostal puszczony i pokonana droga jest wieksza od minimum
+            if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled)
+            {
+                if (distance.magnitude >= dragMin)
+                {
+                    PrepareArrowToShoot(distance);
+                }
+                hasBeenTracked = false;
+                endPosition = new Vector2(0.0f, 0.0f);
+            }
+        }
+    }
+
+    private void TapModeShoot()
+    {
+        foreach (Touch touch in Input.touches)
+        {
+            if ((touch.position.x >= leftBorder && touch.position.y >= downBorder && touch.position.x <= rightBorder) || (touch.position.y > Screen.height * 0.33f && touch.position.x >= leftBorder))
+            {
+                if (touch.phase == TouchPhase.Began)
+                {
+                    distance = Camera.main.ScreenToWorldPoint(touch.position) - mainCharacter.transform.position;
+                    PrepareArrowToShoot(distance);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void TapShoot(Vector2 touchPosition)
+    {
+        distance = Camera.main.ScreenToWorldPoint(touchPosition) - mainCharacter.transform.position;
+        PrepareArrowToShoot(distance);
+    }
 
     public void PrepareArrowToShoot(Vector2 distance)
     {

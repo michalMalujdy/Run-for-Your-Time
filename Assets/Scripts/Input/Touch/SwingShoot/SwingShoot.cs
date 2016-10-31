@@ -9,20 +9,18 @@ public class SwingShoot : MonoBehaviour {
 	float buttonUp = Screen.height * 0.12f;
 	float buttonDown = Screen.height * 0.03f;
 
-	private Text shootText;
-	private Text swingText;
+	public Sprite shootSprite;
+	public Sprite swingSprite;
 	private ShootingMode mainCharacter;
+    private Image imageComponent;
 
 	int timesClicked = 0;
 	bool clicked = false;
 	bool previusState = false;
 
 	void Awake(){
-		shootText = GameObject.Find ("ShootText").GetComponent<Text> ();
-		swingText = GameObject.Find ("SwingText").GetComponent<Text> ();
 		mainCharacter = GameObject.FindWithTag ("Player").GetComponent<ShootingMode> ();
-		swingText.enabled = true;
-		shootText.enabled = false;
+        imageComponent = GetComponent<Image>();
 	}
 
 	// Use this for initialization
@@ -41,17 +39,14 @@ public class SwingShoot : MonoBehaviour {
 		}
 		if (clicked && previusState != true) {
 			timesClicked++;
-			//Debug.Log ("clicked");
 			if (timesClicked == 1) {
 				mainCharacter.ShootMode = false;
 				mainCharacter.SwingMode = true;
-				swingText.enabled = false;
-				shootText.enabled = true;
+                imageComponent.sprite = swingSprite;
 			} else {
 				mainCharacter.ShootMode = true;
 				mainCharacter.SwingMode = false;
-				swingText.enabled = true;
-				shootText.enabled = false;
+                imageComponent.sprite = shootSprite;
 				timesClicked = 0;
 			}
 			previusState = true;
