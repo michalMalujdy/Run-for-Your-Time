@@ -31,8 +31,6 @@ public class Stats : MonoBehaviour {
 	{
 		currentHealth += value;
 
-        Debug.Log("Damage:" + value);
-
 		if (currentHealth < 0.0f) {
 			currentHealth = 0.0f;
 		}

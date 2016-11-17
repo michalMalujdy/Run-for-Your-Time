@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Shoot : MonoBehaviour {
 
-	public Vector2 velocity;
+    [HideInInspector]
+    public Vector2 velocity;
 	private float speed = 0.75f;
 	private float alpha;
     private Vector2 startPoint;

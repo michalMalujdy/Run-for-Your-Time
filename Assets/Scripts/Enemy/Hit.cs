@@ -59,7 +59,7 @@ public class Hit : MonoBehaviour {
                 }
                 if (mainCharacter.SwingMode)
                 {
-                    GetComponent<RealTimeRopeCreating>().StartMakingChain = true;
+                    GetComponent<RunTimeRopeCreator>().enabled = true;
                 }
                 GetComponent<Rigidbody2D>().isKinematic = true;//sprawia że po uderzeniu ustalona rotacja i translacja strzaly sie nie zmienia
             }
