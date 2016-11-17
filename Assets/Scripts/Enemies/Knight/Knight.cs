@@ -37,7 +37,6 @@ public class Knight : Enemy_Abstract {
 
     public override void Die()
     {
-        Debug.Log("Knight died");
         Destroy(this.gameObject);
     }
 
